@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PaymentCard xmlns="http://pl.com.alkosoft/v1_0">
+    <CardNumber>2</CardNumber>
+    <PaymentType>paymentType</PaymentType>
+    <CardType>cardType</CardType>
+    <ExpiryMonth>--01</ExpiryMonth>
+    <ExpiryYear>2018</ExpiryYear>
+    <Masked>true</Masked>
+</PaymentCard>

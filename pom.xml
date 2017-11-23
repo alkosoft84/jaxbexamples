@@ -16,8 +16,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.target>1.9</maven.compiler.target>
-        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
         <project.version>1.0-SNAPSHOT</project.version>
         <project.groupid>pl.com.alkosoft</project.groupid>
     </properties>

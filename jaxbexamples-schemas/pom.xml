@@ -11,12 +11,46 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jaxb-examples-schemas</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>2.3.0</version>
-        </dependency>
-    </dependencies>
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+    </properties>
+
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    <configuration>
+                        <args>
+                            <arg>-npa</arg>
+                            <arg>-Xannotate</arg>
+                        </args>
+                        <plugins>
+                            <plugin>
+                                <groupId>org.jvnet.jaxb2_commons</groupId>
+                                <artifactId>jaxb2-basics-annotate</artifactId>
+                                <version>0.6.0</version>
+                            </plugin>
+                        </plugins>
+                    <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                        <bindingDirectory>src/main/resources/xjb</bindingDirectory>
+                    <schemaIncludes>
+                        <include>creditcard.xsd</include>
+                    </schemaIncludes>
+                        <generateDirectory>${project.basedir}/target/generated-sources/xjc</generateDirectory>
+                    </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

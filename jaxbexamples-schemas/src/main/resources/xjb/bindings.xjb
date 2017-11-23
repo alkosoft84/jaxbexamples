@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings version="2.1"
+          xmlns="http://java.sun.com/xml/ns/jaxb"
+          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+          xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+          xmlns:annox="http://annox.dev.java.net"
+          >
+
+    <globalBindings>
+        <xjc:javaType adapter="adapters.JaxbGMonthAdapter" name="java.time.Month" xmlType="xsd:gMonth" />
+    </globalBindings>
+
+    <bindings schemaLocation="../schema/creditcard.xsd" node="/xsd:schema">
+        <bindings node="xsd:element[@name='PaymentCard']">
+            <annox:annotate>
+                <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="PaymentCard" namespace="http://pl.com.alkosoft/v1_0"/>
+            </annox:annotate>
+        </bindings>
+    </bindings>
+
+</bindings>
