@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="jaxbexamples-api" />
+        <module name="jaxbexamples-client" />
+        <module name="jaxbexamples-distribution" />
+        <module name="jaxbexamples-schemas" />
+        <module name="jaxbexamplesapi" />
+        <module name="jaxbexamplesschemas" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jaxb_examples" target="1.9" />
+      <module name="jaxbexamples" target="1.8" />
+      <module name="jaxbexamples-api" target="1.8" />
+      <module name="jaxbexamples-client" target="1.8" />
+      <module name="jaxbexamples-distribution" target="1.8" />
+      <module name="jaxbexamples-schemas" target="1.8" />
+      <module name="jaxbexamplesapi" target="1.9" />
+      <module name="jaxbexamplesschemas" target="1.9" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
