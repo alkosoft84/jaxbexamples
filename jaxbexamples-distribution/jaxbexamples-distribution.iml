@@ -4,15 +4,12 @@
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="jaxbexamples-api" />
-    <orderEntry type="module" module-name="jaxbexamples-schemas" />
-    <orderEntry type="library" name="Maven: pl.com.alkosoft:jaxbexamples-client:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="jaxb-examples-api" />
+    <orderEntry type="module" module-name="jaxb-examples-schemas" />
+    <orderEntry type="module" module-name="jaxbexamples-client" />
   </component>
 </module>
