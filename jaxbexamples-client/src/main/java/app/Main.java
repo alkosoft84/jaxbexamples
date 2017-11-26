@@ -1,8 +1,9 @@
 package app;
-
-
 import alkosoft.com.pl.v1_0.PaymentCard;
+import jaxbclasses.Person;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -11,13 +12,33 @@ import java.util.GregorianCalendar;
 
 public class Main {
 
-    public static void main(String[] args) {
-        JAXBProxy jaxbProxy = new JAXBProxy();
+    public static void main(String[] args) throws JAXBException {
+/*        JAXBProxy jaxbProxy = new JAXBProxy();
         String request = handleRequest(jaxbProxy);
         PaymentCard paymentCard;
         paymentCard = (PaymentCard) jaxbProxy.parseXmlToJavaObj(request);
-        System.out.println(paymentCard.getExpiryMonth());
+        System.out.println(paymentCard.getExpiryMonth());*/
+        JAXBProxy jaxbProxy = new JAXBProxy(JAXBContext.newInstance("jaxbclasses"));
+        System.out.println("jaxbContext is=" +jaxbProxy.getJaxbContext().toString());
+        Person person = new Person();
+        person.setFirstname("Mariusz");
+        person.setLastname("wrobel");
+        person.setAge(11);
+        person.setModel("Foxussss");
+        String s = jaxbProxy.parseJavaObjToXml(person);
+        System.out.println(s);
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<person>\n" +
+                "   <firstname>Mariusz</firstname>\n" +
+                "   <lastname>wrobel</lastname>\n" +
+                "   <age>11</age>\n" +
+                "   <car>\n" +
+                "      <model>Foxussss</model>\n" +
+                "   </car>\n" +
+                "</person>";
+        Person o = (Person) jaxbProxy.parseXmlToJavaObj(xml);
 
+        jaxbProxy.generateSchemaFromJavaClass(Person.class);
     }
 
     private static String handleRequest(JAXBProxy jaxbProxy) {

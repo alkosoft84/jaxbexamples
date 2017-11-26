@@ -2,6 +2,7 @@ package app;
 
 import alkosoft.com.pl.v1_0.ObjectFactory;
 import org.xml.sax.SAXException;
+import tools.MySchemaOutputResolver;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
@@ -11,12 +12,21 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.File;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
 public class JAXBProxy {
 
-    private  JAXBContext jaxbContext;
+    public void setJaxbContext(JAXBContext jaxbContext) {
+        this.jaxbContext = jaxbContext;
+    }
+
+    public JAXBContext getJaxbContext() {
+        return jaxbContext;
+    }
+
+    private JAXBContext jaxbContext;
     private static final String PACKAGE_NAME = "alkosoft.com.pl.v1_0";
 
     public JAXBProxy() {
@@ -30,6 +40,16 @@ public class JAXBProxy {
     public JAXBProxy(JAXBContext jaxbContext) {
         this.jaxbContext = jaxbContext;
 
+    }
+
+    public void generateSchemaFromJavaClass(Class javaClass) {
+        MySchemaOutputResolver mySchemaOutputResolver = new MySchemaOutputResolver();
+        try {
+            setJaxbContext(JAXBContext.newInstance(javaClass));
+            jaxbContext.generateSchema(mySchemaOutputResolver);
+        } catch (JAXBException | IOException e) {
+            throw new RuntimeException("Problem with generation schema from: " + javaClass.toString() + " details: " + e);
+        }
     }
 
     public Object parseXmlToJavaObj(final String xmlRequest) {
@@ -64,7 +84,7 @@ public class JAXBProxy {
     private Unmarshaller getXmlUnMarshaller() {
         try {
             Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
-            makeUnmarshallerSchemaAware(unmarshaller);
+            //makeUnmarshallerSchemaAware(unmarshaller);
             return unmarshaller;
 
         } catch (JAXBException e) {

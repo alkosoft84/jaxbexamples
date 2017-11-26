@@ -15,4 +15,19 @@
         </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
+
+    <!--Only for XMLRootElement example-->
+    <xsd:complexType name="DifferentType">
+        <xsd:sequence>
+            <xsd:element name="Test" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="DifferentCard">
+    <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Card" type="xsd:string" maxOccurs="unbounded"/>
+            </xsd:sequence>
+    </xsd:complexType>
+    </xsd:element>
 </xsd:schema>
