@@ -41,6 +41,8 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <strict>false</strict>
+                            <catalog>src/main/resources/catalog/catalog.cat</catalog>
                             <episodes>
                                 <episode>
                                     <groupId>pl.com.alkosoft</groupId>
@@ -53,6 +55,17 @@
                                 <include>creditcard.xsd</include>
                             </schemaIncludes>
                             <generateDirectory>${project.basedir}/target/generated-sources/xjc</generateDirectory>
+                            <args>
+                                <arg>-npa</arg>
+                                <arg>-Xannotate</arg>
+                            </args>
+                            <plugins>
+                                <plugin>
+                                    <groupId>org.jvnet.jaxb2_commons</groupId>
+                                    <artifactId>jaxb2-basics-annotate</artifactId>
+                                    <version>0.6.0</version>
+                                </plugin>
+                            </plugins>
                         </configuration>
                     </execution>
                 </executions>

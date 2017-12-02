@@ -1,2 +1,1 @@
--- Match address.xsd by URL --
-SYSTEM "common/email.xsd" "email.xsd"
+REWRITE_SYSTEM "http://www.example.com/address/address222.xsd" "maven:pl.com.alkosoft:jaxbexamples-commonschemas!/schema/email.xsd"
