@@ -1,1 +1,2 @@
-REWRITE_SYSTEM "http://www.example.com/address/address222.xsd" "maven:pl.com.alkosoft:jaxbexamples-commonschemas!/schema/email.xsd"
+REWRITE_SYSTEM "file:/${project.absolute.path}/src/main/resources/schema/common/email.xsd"
+"maven:pl.com.alkosoft:jaxbexamples-commonschemas!/schema/email.xsd"

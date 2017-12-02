@@ -31,7 +31,30 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>catalog/catalog.cat</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!-- This execution ensures the catalog.cat file is copied and filtered before the maven-jaxb2-plugin is executed -->
+                        <id>Filter catalog.cat</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
@@ -42,7 +65,7 @@
                         </goals>
                         <configuration>
                             <strict>false</strict>
-                            <catalog>src/main/resources/catalog/catalog.cat</catalog>
+                                <catalog>target/classes/catalog/catalog.cat</catalog>
                             <episodes>
                                 <episode>
                                     <groupId>pl.com.alkosoft</groupId>
@@ -71,17 +94,7 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
+
     </build>
 
 </project>

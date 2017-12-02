@@ -5,7 +5,7 @@
             xmlns:email="http://pl.com.commons/v1_0"
             elementFormDefault="qualified">
 
-    <xsd:import namespace="http://pl.com.commons/v1_0" schemaLocation="http://www.example.com/address/address222.xsd"/>
+    <xsd:import namespace="http://pl.com.commons/v1_0" schemaLocation="common/email.xsd"/>
 
     <xsd:complexType name="PaymentCard">
         <xsd:sequence>
