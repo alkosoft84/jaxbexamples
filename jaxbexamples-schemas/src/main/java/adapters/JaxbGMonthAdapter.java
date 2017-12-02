@@ -10,20 +10,10 @@ import java.util.Objects;
 
 public class JaxbGMonthAdapter extends XmlAdapter<String, Month>
 {
-    private static final String INPUT_FORMATS = "[yyyy-MM-dd]"
-            + "[yyyy-MM-dd]" + "[yyyy/MM/dd]";
-
     private static final String OUTPUT_FORMAT = "--MM";
-
-    private DateTimeFormatter inputFormatter;
     private DateTimeFormatter outputFormatter;
-
-    /**
-     * Constructor
-     */
     public JaxbGMonthAdapter()
     {
-        this.inputFormatter = getDateTimeFormatter(INPUT_FORMATS);
         this.outputFormatter = getDateTimeFormatter(OUTPUT_FORMAT);
     }
 

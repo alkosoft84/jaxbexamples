@@ -50,7 +50,7 @@
                         <bindingDirectory>src/main/resources/xjb</bindingDirectory>
                     <schemaIncludes>
                         <include>creditcard.xsd</include>
-                        <include>schema1.xsd</include>
+                        <!--<include>schema1.xsd</include>-->
                     </schemaIncludes>
                         <generateDirectory>${project.basedir}/target/generated-sources/xjc</generateDirectory>
                     </configuration>

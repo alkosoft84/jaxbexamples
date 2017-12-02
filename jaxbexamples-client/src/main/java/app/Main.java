@@ -18,7 +18,7 @@ public class Main {
         PaymentCard paymentCard;
         paymentCard = (PaymentCard) jaxbProxy.parseXmlToJavaObj(request);
         System.out.println(paymentCard.getExpiryMonth());*/
-        JAXBProxy jaxbProxy = new JAXBProxy(JAXBContext.newInstance("jaxbclasses"));
+       JAXBProxy jaxbProxy = new JAXBProxy(JAXBContext.newInstance("jaxbclasses"));
         System.out.println("jaxbContext is=" +jaxbProxy.getJaxbContext().toString());
         Person person = new Person();
         person.setFirstname("Mariusz");
@@ -52,7 +52,7 @@ public class Main {
         PaymentCard paymentCard = new PaymentCard();
         paymentCard.setCardNumber(2);
         paymentCard.setCardType("cardType");
-        paymentCard.setExpiryMonth(Month.JULY);
+        //paymentCard.setExpiryMonth(Month.JULY);
         paymentCard.setExpiryYear(createGregorianCalendarDate());
         paymentCard.setPaymentType("paymentType");
         paymentCard.setMasked(true);
