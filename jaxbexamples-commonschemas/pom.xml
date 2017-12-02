@@ -37,6 +37,7 @@
                             <bindingDirectory>src/main/resources/xjb</bindingDirectory>
                             <schemaIncludes>
                                 <include>email.xsd</include>
+                                <include>phone.xsd</include>
                             </schemaIncludes>
                             <generateDirectory>${project.basedir}/target/generated-sources/xjc</generateDirectory>
                         </configuration>

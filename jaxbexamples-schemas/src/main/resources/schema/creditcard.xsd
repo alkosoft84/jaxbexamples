@@ -3,16 +3,26 @@
             xmlns="http://pl.com.alkosoft/v1_0"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:email="http://pl.com.commons/v1_0"
+            xmlns:phone="http://pl.com.commons/online"
             elementFormDefault="qualified">
 
     <xsd:import namespace="http://pl.com.commons/v1_0" schemaLocation="common/email.xsd"/>
     <xsd:import namespace="http://pl.com.commons/online" schemaLocation="http://cms/phone.xsd"/>
 
+    <xsd:complexType name="PaymentCardOwner">
+        <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+            <xsd:element name="Email" type="email:Email"/>
+            <xsd:element name="Phone" type="phone:Phone"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
     <xsd:complexType name="PaymentCard">
         <xsd:sequence>
             <xsd:element name="CardNumber" type="xsd:int"/>
             <xsd:element name="PaymentType" type="xsd:string"/>
-            <xsd:element name="Email" type="email:Email"/>
+
             <xsd:element name="CardType" type="xsd:string"/>
             <xsd:element name="ExpiryMonth" type="xsd:gMonth"/>
             <xsd:element name="ExpiryYear" type="xsd:gYear"/>

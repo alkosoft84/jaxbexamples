@@ -46,7 +46,8 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
-                        <!-- This execution ensures the catalog.cat file is copied and filtered before the maven-jaxb2-plugin is executed -->
+                        <!-- This execution ensures the catalog.cat
+                        is copied and filtered before maven-jaxb2-plugin is executed -->
                         <id>Filter catalog.cat</id>
                         <phase>generate-sources</phase>
                         <goals>
