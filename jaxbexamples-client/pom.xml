@@ -12,6 +12,7 @@
     <artifactId>jaxbexamples-client</artifactId>
 
     <dependencies>
+
         <dependency>
             <groupId>pl.com.alkosoft</groupId>
             <artifactId>jaxb-examples-schemas</artifactId>

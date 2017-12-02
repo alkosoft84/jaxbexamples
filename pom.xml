@@ -12,6 +12,7 @@
         <module>jaxbexamples-api</module>
         <module>jaxbexamples-distribution</module>
         <module>jaxbexamples-client</module>
+        <module>jaxbexamples-commonschemas</module>
     </modules>
     <packaging>pom</packaging>
 

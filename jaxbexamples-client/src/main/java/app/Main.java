@@ -1,6 +1,8 @@
 package app;
+
+
+
 import alkosoft.com.pl.v1_0.PaymentCard;
-import jaxbclasses.Person;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,11 +16,11 @@ public class Main {
 
     public static void main(String[] args) throws JAXBException {
 /*        JAXBProxy jaxbProxy = new JAXBProxy();
-        String request = handleRequest(jaxbProxy);
+        String request = handleRequest(jaxbProxy);*/
         PaymentCard paymentCard;
-        paymentCard = (PaymentCard) jaxbProxy.parseXmlToJavaObj(request);
+/*        paymentCard = (PaymentCard) jaxbProxy.parseXmlToJavaObj(request);
         System.out.println(paymentCard.getExpiryMonth());*/
-       JAXBProxy jaxbProxy = new JAXBProxy(JAXBContext.newInstance("jaxbclasses"));
+/*       JAXBProxy jaxbProxy = new JAXBProxy(JAXBContext.newInstance("jaxbclasses"));
         System.out.println("jaxbContext is=" +jaxbProxy.getJaxbContext().toString());
         Person person = new Person();
         person.setFirstname("Mariusz");
@@ -38,10 +40,10 @@ public class Main {
                 "</person>";
         Person o = (Person) jaxbProxy.parseXmlToJavaObj(xml);
 
-        jaxbProxy.generateSchemaFromJavaClass(Person.class);
+        jaxbProxy.generateSchemaFromJavaClass(Person.class);*/
     }
 
-    private static String handleRequest(JAXBProxy jaxbProxy) {
+/*    private static String handleRequest(JAXBProxy jaxbProxy) {
         PaymentCard paymentCard = getPaymentCard();
         String xmlOutput = jaxbProxy.parseJavaObjToXml(paymentCard);
         System.out.println(xmlOutput);
@@ -52,7 +54,7 @@ public class Main {
         PaymentCard paymentCard = new PaymentCard();
         paymentCard.setCardNumber(2);
         paymentCard.setCardType("cardType");
-        //paymentCard.setExpiryMonth(Month.JULY);
+        paymentCard.setExpiryMonth(Month.JULY);
         paymentCard.setExpiryYear(createGregorianCalendarDate());
         paymentCard.setPaymentType("paymentType");
         paymentCard.setMasked(true);
@@ -79,5 +81,5 @@ public class Main {
                 "    <ExpiryYear>2018</ExpiryYear>\n" +
                 "    <Masked>true</Masked>\n" +
                 "</PaymentCard>";
-    }
+    }*/
 }

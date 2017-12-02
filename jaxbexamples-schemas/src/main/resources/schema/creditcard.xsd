@@ -2,32 +2,28 @@
 <xsd:schema targetNamespace="http://pl.com.alkosoft/v1_0"
             xmlns="http://pl.com.alkosoft/v1_0"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:email="http://pl.com.commons/v1_0"
             elementFormDefault="qualified">
-    <xsd:element name="PaymentCard">
-        <xsd:complexType>
+
+    <xsd:import namespace="http://pl.com.commons/v1_0" schemaLocation="common/email.xsd"/>
+
+    <xsd:complexType name="PaymentCard">
         <xsd:sequence>
-            <xsd:element name="CardNumber" type="xsd:int" />
-            <xsd:element name="PaymentType" type="xsd:string" />
-            <xsd:element name="CardType" type="xsd:string" />
+            <xsd:element name="CardNumber" type="xsd:int"/>
+            <xsd:element name="PaymentType" type="xsd:string"/>
+            <xsd:element name="Email" type="email:Email"/>
+            <xsd:element name="CardType" type="xsd:string"/>
             <xsd:element name="ExpiryMonth" type="xsd:gMonth"/>
             <xsd:element name="ExpiryYear" type="xsd:gYear"/>
             <xsd:element name="Masked" type="xsd:boolean"/>
         </xsd:sequence>
-        </xsd:complexType>
-    </xsd:element>
-
-    <!--Only for XMLRootElement example-->
-    <xsd:complexType name="DifferentType">
-        <xsd:sequence>
-            <xsd:element name="Test" type="xsd:string"/>
-        </xsd:sequence>
     </xsd:complexType>
 
     <xsd:element name="DifferentCard">
-    <xsd:complexType>
+        <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="Card" type="xsd:string" maxOccurs="unbounded"/>
             </xsd:sequence>
-    </xsd:complexType>
+        </xsd:complexType>
     </xsd:element>
 </xsd:schema>

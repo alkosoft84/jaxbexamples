@@ -23,6 +23,11 @@
         </dependency>
         <dependency>
             <groupId>${project.groupid}</groupId>
+            <artifactId>jaxbexamples-commonschemas</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupid}</groupId>
             <artifactId>jaxbexamples-client</artifactId>
             <version>${project.version}</version>
         </dependency>
