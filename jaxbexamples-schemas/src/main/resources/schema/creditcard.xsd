@@ -6,6 +6,7 @@
             elementFormDefault="qualified">
 
     <xsd:import namespace="http://pl.com.commons/v1_0" schemaLocation="common/email.xsd"/>
+    <xsd:import namespace="http://pl.com.commons/online" schemaLocation="http://cms/phone.xsd"/>
 
     <xsd:complexType name="PaymentCard">
         <xsd:sequence>
