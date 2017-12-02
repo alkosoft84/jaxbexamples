@@ -1,0 +1,2 @@
+-- Match address.xsd by URL --
+SYSTEM "common/email.xsd" "email.xsd"

@@ -16,7 +16,7 @@
         <dependency>
             <groupId>pl.com.alkosoft</groupId>
             <artifactId>jaxb-examples-schemas</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
