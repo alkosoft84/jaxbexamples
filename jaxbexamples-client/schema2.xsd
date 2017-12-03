@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://pl.com.alkosoft/hashmap">
+
+  <xs:import namespace="http://pl.com.alkosoft/hashmap" schemaLocation="schema1.xsd"/>
+
+  <xs:element name="game" type="ns1:game"/>
+
+</xs:schema>
+

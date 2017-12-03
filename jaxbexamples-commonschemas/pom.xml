@@ -47,11 +47,22 @@
                         <configuration>
                             <args>
                                 <arg>-npa</arg>
+                                <arg>-Xannotate</arg>
                             </args>
+                            <plugins>
+                            <plugin>
+                                <groupId>org.jvnet.jaxb2_commons</groupId>
+                                <artifactId>jaxb2-basics-annotate</artifactId>
+                                <version>0.6.0</version>
+                            </plugin>
+                            </plugins>
                             <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                            <bindingDirectory>src/main/resources/xjb</bindingDirectory>
                             <schemaIncludes>
-                                <include>email.xsd</include>
-                                <include>phone.xsd</include>
+                               <!-- <include>email.xsd</include>
+                                <include>phone.xsd</include>-->
+                                <!--<include>game_withmap.xsd</include>-->
+                                <include>game_with_finished_map.xsd</include>
                             </schemaIncludes>
                             <generateDirectory>${project.basedir}/target/generated-sources/xjc/non-immutable</generateDirectory>
                         </configuration>

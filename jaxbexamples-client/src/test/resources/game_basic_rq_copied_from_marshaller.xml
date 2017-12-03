@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<game>
+    <name>test name</name>
+    <textures>
+        <entry>
+            <key>green</key>
+            <value>pathToGreen</value>
+        </entry>
+        <entry>
+            <key>blue</key>
+            <value>pathToBlue</value>
+        </entry>
+    </textures>
+</game>

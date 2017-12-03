@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bindings version="2.1"
           xmlns="http://java.sun.com/xml/ns/jaxb"
-          >
+          xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+          xmlns:annox="http://annox.dev.java.net"
+>
+    <bindings schemaLocation="../schema/game_with_finished_map.xsd" node="/xsd:schema">
+        <bindings node="xsd:complexType[@name='game']/xsd:sequence/xsd:element[@name='textures']">
+            <property>
+                <baseType name="java.util.Map&lt;String,String&gt;" />
+            </property>
+            <annox:annotate target="field">
+                <annox:annotate annox:class="javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter" value="commonsadapters.JaxbMapAdapter"/>
+            </annox:annotate>
+        </bindings>
+        <bindings node="xsd:complexType[@name='game']">
+            <annox:annotate>
+                <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="game" namespace="http://pl.com.alkosoft/hashmap"/>
+            </annox:annotate>
+        </bindings>
+    </bindings>
 
 </bindings>
