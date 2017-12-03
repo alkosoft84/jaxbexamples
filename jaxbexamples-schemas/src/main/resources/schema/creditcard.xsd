@@ -3,11 +3,11 @@
             xmlns="http://pl.com.alkosoft/v1_0"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:email="http://pl.com.commons/v1_0"
-            xmlns:phone="http://pl.com.commons/online"
+            xmlns:phone="http://pl.com.commons/immutable"
             elementFormDefault="qualified">
 
     <xsd:import namespace="http://pl.com.commons/v1_0" schemaLocation="common/email.xsd"/>
-    <xsd:import namespace="http://pl.com.commons/online" schemaLocation="http://cms/phone.xsd"/>
+    <xsd:import namespace="http://pl.com.commons/immutable" schemaLocation="http://cms/phone.xsd"/>
 
     <xsd:complexType name="PaymentCardOwner">
         <xsd:sequence>

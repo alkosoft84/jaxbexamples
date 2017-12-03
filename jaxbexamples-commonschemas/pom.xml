@@ -62,7 +62,7 @@
                                <!-- <include>email.xsd</include>
                                 <include>phone.xsd</include>-->
                                 <!--<include>game_withmap.xsd</include>-->
-                                <include>game_with_finished_map.xsd</include>
+                                <include>non-immutable/game/game_with_finished_map.xsd</include>
                             </schemaIncludes>
                             <generateDirectory>${project.basedir}/target/generated-sources/xjc/non-immutable</generateDirectory>
                         </configuration>

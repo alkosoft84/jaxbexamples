@@ -22,4 +22,8 @@ public final class Game {
         this.name = name;
         this.textures = textures;
     }
+
+    public Map<String, String> getTextures() {
+        return textures;
+    }
 }

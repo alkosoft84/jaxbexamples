@@ -14,24 +14,34 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static app.utils.JAXBUtils.*;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.entry;
+
 
 public class SomeApplicationTest {
     private static final String PACKAGE_NAME = "alkosoft.com.pl.hashmap:jaxbclasses.jaxbhashmapimpl";
     private JAXBContext jaxbContext;
 
     @Test
-    public void marshall_using_standard_implementation() throws JAXBException {
+    public void marshall_based_on_annotated_class() throws JAXBException {
         //given
-        jaxbContext = initiateJaxContextBasedOnPackage(PACKAGE_NAME);
-        //jaxbContext = initiateJaxContextBasedOnClass(Game.class);
-        JAXBUtils.showJaxbImplementation(jaxbContext);
+        jaxbContext = initiateJaxContextBasedOnClass(jaxbclasses.Game.class);
         Marshaller marshaller = getXmlMarshaller(jaxbContext);
         StringWriter stringWriter = new StringWriter();
-        Map<String,String> textures = new HashMap<>();
-        textures.put("blue","pathToBlue");
-        textures.put("green","pathToGreen");
+        Map<String, String> textures = fillTextures();
+        jaxbclasses.Game game = new jaxbclasses.Game("test name",textures);
+        //when
+        marshaller.marshal(game, stringWriter);
+        System.out.println(stringWriter.toString());
+    }
 
+    @Test
+    public void marshall_based_on_generated_class() throws JAXBException {
+        //given
+        jaxbContext = initiateJaxContextBasedOnPackage(PACKAGE_NAME);
+        Marshaller marshaller = getXmlMarshaller(jaxbContext);
+        StringWriter stringWriter = new StringWriter();
+        Map<String, String> textures = fillTextures();
         Game game = new Game();
         game.setName("test name");
         game.setTextures(textures);
@@ -41,18 +51,44 @@ public class SomeApplicationTest {
     }
 
     @Test
-    public void unmarshall_using_standard_implementation() throws JAXBException {
+    public void unmarshall_based_on_annotated_class() throws JAXBException {
+        //given
+        jaxbContext = initiateJaxContextBasedOnClass(jaxbclasses.Game.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
+        Unmarshaller unmarshaller = getXmlUnMarshaller(jaxbContext, false);
+        //when
+        jaxbclasses.Game game = (jaxbclasses.Game) unmarshaller.unmarshal(new File(getClass().getClassLoader()
+                .getResource("game_rq.xml").getFile()));
+        //then
+        assertThat(game).isInstanceOf(jaxbclasses.Game.class);
+        assertThat(game.getTextures().entrySet())
+                .contains(entry("blue", "pathToBlue"),
+                        entry("green", "pathToGreen")
+                );
+    }
+
+    @Test
+    public void unmarshall_based_on_generated_class() throws JAXBException {
         //given
         jaxbContext = initiateJaxContextBasedOnPackage(PACKAGE_NAME);
-        //jaxbContext = initiateJaxContextBasedOnClass(Game.class);
         JAXBUtils.showJaxbImplementation(jaxbContext);
-        //generateSchemaFromJavaClass(Game.class);
         Unmarshaller unmarshaller = getXmlUnMarshaller(jaxbContext, false);
         //when
         Game game = (Game) unmarshaller.unmarshal(new File(getClass().getClassLoader()
-                .getResource("game_finished_rq_copied_from_marshaller.xml").getFile()));
+                .getResource("game_rq_copied_from_marshaller.xml").getFile()));
         //then
         assertThat(game).isInstanceOf(Game.class);
+        assertThat(game.getTextures().entrySet())
+                .contains(entry("blue", "pathToBlue"),
+                        entry("green", "pathToGreen")
+                );
+    }
+
+    private Map<String, String> fillTextures() {
+        Map<String,String> textures = new HashMap<>();
+        textures.put("blue","pathToBlue");
+        textures.put("green","pathToGreen");
+        return textures;
     }
 
 

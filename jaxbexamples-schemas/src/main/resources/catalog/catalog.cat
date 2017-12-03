@@ -1,4 +1,4 @@
 REWRITE_SYSTEM "http://cms/phone.xsd"
-"maven:pl.com.alkosoft:jaxbexamples-commonschemas!/schema/phone.xsd"
+"maven:pl.com.alkosoft:jaxbexamples-commonschemas!/schema/immutable/phone.xsd"
 REWRITE_SYSTEM "file:/${project.absolute.path}/src/main/resources/schema/common/email.xsd"
-"maven:pl.com.alkosoft:jaxbexamples-commonschemas!/schema/email.xsd"
+"maven:pl.com.alkosoft:jaxbexamples-commonschemas!/schema/non-immutable/email.xsd"
