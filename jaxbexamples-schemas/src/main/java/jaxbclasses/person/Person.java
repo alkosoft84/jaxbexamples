@@ -1,4 +1,4 @@
-package jaxbclasses;
+package jaxbclasses.person;
 
 import org.eclipse.persistence.oxm.annotations.XmlPath;
 

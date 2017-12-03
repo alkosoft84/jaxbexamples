@@ -1,4 +1,4 @@
-package jaxbclasses;
+package jaxbclasses.person;
 
 public class Car {
     private String model;

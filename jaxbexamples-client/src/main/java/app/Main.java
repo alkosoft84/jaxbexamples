@@ -15,12 +15,12 @@ import java.util.GregorianCalendar;
 public class Main {
 
     public static void main(String[] args) throws JAXBException {
-/*        JAXBProxy jaxbProxy = new JAXBProxy();
+/*        JAXBUtils jaxbProxy = new JAXBUtils();
         String request = handleRequest(jaxbProxy);*/
         PaymentCard paymentCard;
 /*        paymentCard = (PaymentCard) jaxbProxy.parseXmlToJavaObj(request);
         System.out.println(paymentCard.getExpiryMonth());*/
-/*       JAXBProxy jaxbProxy = new JAXBProxy(JAXBContext.newInstance("jaxbclasses"));
+/*       JAXBUtils jaxbProxy = new JAXBUtils(JAXBContext.newInstance("jaxbclasses"));
         System.out.println("jaxbContext is=" +jaxbProxy.getJaxbContext().toString());
         Person person = new Person();
         person.setFirstname("Mariusz");
@@ -43,7 +43,7 @@ public class Main {
         jaxbProxy.generateSchemaFromJavaClass(Person.class);*/
     }
 
-/*    private static String handleRequest(JAXBProxy jaxbProxy) {
+/*    private static String handleRequest(JAXBUtils jaxbProxy) {
         PaymentCard paymentCard = getPaymentCard();
         String xmlOutput = jaxbProxy.parseJavaObjToXml(paymentCard);
         System.out.println(xmlOutput);
