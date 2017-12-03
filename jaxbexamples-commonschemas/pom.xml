@@ -16,30 +16,44 @@
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.sabomichal</groupId>
+                        <artifactId>immutable-xjc-plugin</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
+                        <id>immutable</id>
+                        <goals><goal>generate</goal></goals>
+                        <configuration>
+                            <args>
+                                <arg>-immutable</arg>
+                                <arg>-imm-builder</arg>
+                            </args>
+                            <schemaDirectory>src/main/resources/schema</schemaDirectory>
+                            <schemaIncludes>
+                                <include>immutable/phone.xsd</include>
+                            </schemaIncludes>
+                            <generateDirectory>${project.basedir}/target/generated-sources/xjc/immutable</generateDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>non-immutable</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <args>
                                 <arg>-npa</arg>
-                                <arg>-Xannotate</arg>
                             </args>
-                            <plugins>
-                                <plugin>
-                                    <groupId>org.jvnet.jaxb2_commons</groupId>
-                                    <artifactId>jaxb2-basics-annotate</artifactId>
-                                    <version>0.6.0</version>
-                                </plugin>
-                            </plugins>
                             <schemaDirectory>src/main/resources/schema</schemaDirectory>
-                            <bindingDirectory>src/main/resources/xjb</bindingDirectory>
                             <schemaIncludes>
                                 <include>email.xsd</include>
                                 <include>phone.xsd</include>
                             </schemaIncludes>
-                            <generateDirectory>${project.basedir}/target/generated-sources/xjc</generateDirectory>
+                            <generateDirectory>${project.basedir}/target/generated-sources/xjc/non-immutable</generateDirectory>
                         </configuration>
                     </execution>
                 </executions>
