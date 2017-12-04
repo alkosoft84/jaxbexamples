@@ -26,6 +26,7 @@ public class SomeApplicationTest {
     public void marshall_based_on_annotated_class() throws JAXBException {
         //given
         jaxbContext = initiateJaxContextBasedOnClass(jaxbclasses.Game.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
         Marshaller marshaller = getXmlMarshaller(jaxbContext);
         StringWriter stringWriter = new StringWriter();
         Map<String, String> textures = fillTextures();
