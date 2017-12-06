@@ -17,8 +17,8 @@ public class Person {
     @XmlPath("car/engine/type/text()")
     private String engineModel;
 
-    public Person() {
-    }
+    //for JAXB purpose
+    public Person() { }
 
     public Person(String firstname, String lastname, String engineModel) {
         this.firstname = firstname;

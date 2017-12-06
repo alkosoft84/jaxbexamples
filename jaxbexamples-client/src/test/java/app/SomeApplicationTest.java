@@ -2,8 +2,6 @@ package app;
 
 import alkosoft.com.pl.hashmap.Game;
 import app.utils.JAXBUtils;
-import jaxbclasses.moxy.Car;
-import jaxbclasses.moxy.Engine;
 import jaxbclasses.moxy.Person;
 import org.junit.Test;
 
@@ -33,7 +31,7 @@ public class SomeApplicationTest {
         Marshaller marshaller = getXmlMarshaller(jaxbContext);
         StringWriter stringWriter = new StringWriter();
         Map<String, String> textures = fillTextures();
-        jaxbclasses.Game game = new jaxbclasses.Game("test name",textures);
+        jaxbclasses.Game game = new jaxbclasses.Game("test name", textures);
         //when
         marshaller.marshal(game, stringWriter);
         System.out.println(stringWriter.toString());
@@ -95,8 +93,6 @@ public class SomeApplicationTest {
         JAXBUtils.showJaxbImplementation(jaxbContext);
         Marshaller marshaller = getXmlMarshaller(jaxbContext);
         StringWriter stringWriter = new StringWriter();
-        Engine engine = new Engine("V6");
-        Car car = new Car("Laguna",engine);
         Person person = new Person("Mariusz", "Wrobel", "V6");
         //when
         marshaller.marshal(person, stringWriter);
@@ -118,9 +114,9 @@ public class SomeApplicationTest {
     }
 
     private Map<String, String> fillTextures() {
-        Map<String,String> textures = new HashMap<>();
-        textures.put("blue","pathToBlue");
-        textures.put("green","pathToGreen");
+        Map<String, String> textures = new HashMap<>();
+        textures.put("blue", "pathToBlue");
+        textures.put("green", "pathToGreen");
         return textures;
     }
 }
