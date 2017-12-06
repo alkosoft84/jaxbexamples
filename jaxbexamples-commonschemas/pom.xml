@@ -10,7 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>jaxbexamples-commonschemas</artifactId>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.6.4</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -26,7 +32,9 @@
                 <executions>
                     <execution>
                         <id>immutable</id>
-                        <goals><goal>generate</goal></goals>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
                         <configuration>
                             <args>
                                 <arg>-immutable</arg>
@@ -36,7 +44,8 @@
                             <schemaIncludes>
                                 <include>immutable/phone.xsd</include>
                             </schemaIncludes>
-                            <generateDirectory>${project.basedir}/target/generated-sources/xjc/immutable</generateDirectory>
+                            <generateDirectory>${project.basedir}/target/generated-sources/xjc/immutable
+                            </generateDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -50,21 +59,22 @@
                                 <arg>-Xannotate</arg>
                             </args>
                             <plugins>
-                            <plugin>
-                                <groupId>org.jvnet.jaxb2_commons</groupId>
-                                <artifactId>jaxb2-basics-annotate</artifactId>
-                                <version>0.6.0</version>
-                            </plugin>
+                                <plugin>
+                                    <groupId>org.jvnet.jaxb2_commons</groupId>
+                                    <artifactId>jaxb2-basics-annotate</artifactId>
+                                    <version>0.6.0</version>
+                                </plugin>
                             </plugins>
                             <schemaDirectory>src/main/resources/schema</schemaDirectory>
                             <bindingDirectory>src/main/resources/xjb</bindingDirectory>
                             <schemaIncludes>
-                               <!-- <include>email.xsd</include>
-                                <include>phone.xsd</include>-->
+                                <!-- <include>email.xsd</include>
+                                 <include>phone.xsd</include>-->
                                 <!--<include>game_withmap.xsd</include>-->
                                 <include>non-immutable/game/game_with_finished_map.xsd</include>
                             </schemaIncludes>
-                            <generateDirectory>${project.basedir}/target/generated-sources/xjc/non-immutable</generateDirectory>
+                            <generateDirectory>${project.basedir}/target/generated-sources/xjc/non-immutable
+                            </generateDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -72,9 +82,11 @@
         </plugins>
         <resources>
             <resource>
-            <directory>src/main/java</directory>
-            <excludes><exclude>**/*.java</exclude></excludes>
-        </resource>
+                <directory>src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
             <resource>
                 <directory>src/main/resources</directory>
             </resource>

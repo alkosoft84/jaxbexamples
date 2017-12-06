@@ -2,6 +2,7 @@ package app;
 
 import alkosoft.com.pl.hashmap.Game;
 import app.utils.JAXBUtils;
+import jaxbclasses.documents.Document;
 import jaxbclasses.moxy.Person;
 import org.junit.Test;
 
@@ -113,10 +114,50 @@ public class SomeApplicationTest {
         assertThat(person.getEngineModel()).isEqualToIgnoringCase("V6");
     }
 
+    @Test
+    public void marshall_document_with_map() throws JAXBException {
+        //given
+        jaxbContext = initiateJaxContextBasedOnClass(Document.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
+        Marshaller marshaller = getXmlMarshaller(jaxbContext);
+        marshaller.setProperty("eclipselink.media-type", "application/json");
+        StringWriter stringWriter = new StringWriter();
+        Map<String, String> parsers = fillParsers();
+        Document document = new Document("Word","doc", parsers);
+        //when
+        marshaller.marshal(document, stringWriter);
+        System.out.println(stringWriter.toString());
+    }
+
+    @Test
+    public void unmarshall_document_with_map() throws JAXBException {
+        //given
+        jaxbContext = initiateJaxContextBasedOnClass(Document.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
+        Unmarshaller unmarshaller = getXmlUnMarshaller(jaxbContext, false);
+        unmarshaller.setProperty("eclipselink.media-type", "application/json");
+        //when
+        Document document = (Document) unmarshaller.unmarshal(new File(getClass().getClassLoader()
+                .getResource("documents/document_rq.json").getFile()));
+        //then
+        assertThat(document).isInstanceOf(Document.class);
+        assertThat(document.getParsers())
+                .contains(entry("json", "JsonWordParser"),
+                        entry("xml", "XmlWordParser")
+                );
+    }
+
     private Map<String, String> fillTextures() {
         Map<String, String> textures = new HashMap<>();
         textures.put("blue", "pathToBlue");
         textures.put("green", "pathToGreen");
         return textures;
+    }
+
+    private Map<String, String> fillParsers() {
+        Map<String, String> parsers = new HashMap<>();
+        parsers.put("json", "JsonWordParser");
+        parsers.put("xml", "XmlWordParser");
+        return parsers;
     }
 }

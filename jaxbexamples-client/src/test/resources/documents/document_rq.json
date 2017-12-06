@@ -1,0 +1,10 @@
+{
+  "document" : {
+    "name" : "Word",
+    "type" : "doc",
+    "parsers" : {
+      "xml" : "XmlWordParser",
+      "json" : "JsonWordParser"
+    }
+  }
+}

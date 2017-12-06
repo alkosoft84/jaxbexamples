@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <name>Word</name>
+    <type>doc</type>
+    <parsers>
+        <xml>XmlWordParser</xml>
+        <json>JsonWordParser</json>
+    </parsers>
+</document>
