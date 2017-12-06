@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person>
+    <firstname>Mariusz</firstname>
+    <lastname>Wrobel</lastname>
+    <car>
+        <engine>
+            <type>V6</type>
+        </engine>
+    </car>
+</person>

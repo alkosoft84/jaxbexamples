@@ -2,6 +2,9 @@ package app;
 
 import alkosoft.com.pl.hashmap.Game;
 import app.utils.JAXBUtils;
+import jaxbclasses.moxy.Car;
+import jaxbclasses.moxy.Engine;
+import jaxbclasses.moxy.Person;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBContext;
@@ -79,10 +82,39 @@ public class SomeApplicationTest {
                 .getResource("game_rq_copied_from_marshaller.xml").getFile()));
         //then
         assertThat(game).isInstanceOf(Game.class);
-        assertThat(game.getTextures().entrySet())
+        assertThat(game.getTextures())
                 .contains(entry("blue", "pathToBlue"),
                         entry("green", "pathToGreen")
                 );
+    }
+
+    @Test
+    public void marshall_annotated_structure() throws JAXBException {
+        //given
+        jaxbContext = initiateJaxContextBasedOnClass(Person.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
+        Marshaller marshaller = getXmlMarshaller(jaxbContext);
+        StringWriter stringWriter = new StringWriter();
+        Engine engine = new Engine("V6");
+        Car car = new Car("Laguna",engine);
+        Person person = new Person("Mariusz", "Wrobel", "V6");
+        //when
+        marshaller.marshal(person, stringWriter);
+        System.out.println(stringWriter.toString());
+    }
+
+    @Test
+    public void unmarshall_annotated_structure() throws JAXBException {
+        //given
+        jaxbContext = initiateJaxContextBasedOnClass(Person.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
+        Unmarshaller unmarshaller = getXmlUnMarshaller(jaxbContext, false);
+        //when
+        Person person = (Person) unmarshaller.unmarshal(new File(getClass().getClassLoader()
+                .getResource("person_rq.xml").getFile()));
+        //then
+        assertThat(person).isInstanceOf(Person.class);
+        assertThat(person.getEngineModel()).isEqualToIgnoringCase("V6");
     }
 
     private Map<String, String> fillTextures() {
@@ -91,8 +123,4 @@ public class SomeApplicationTest {
         textures.put("green","pathToGreen");
         return textures;
     }
-
-
-
-
 }
