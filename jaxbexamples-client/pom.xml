@@ -12,7 +12,11 @@
     <artifactId>jaxbexamples-client</artifactId>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.fasterxml.woodstox</groupId>
+            <artifactId>woodstox-core</artifactId>
+            <version>5.0.3</version>
+        </dependency>
         <dependency>
             <groupId>pl.com.alkosoft</groupId>
             <artifactId>jaxb-examples-schemas</artifactId>

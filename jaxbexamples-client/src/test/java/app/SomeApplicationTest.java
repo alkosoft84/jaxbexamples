@@ -5,13 +5,21 @@ import app.utils.JAXBUtils;
 import jaxbclasses.documents.Document;
 import jaxbclasses.moxy.Person;
 import org.junit.Test;
+import org.xml.sax.*;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.File;
-import java.io.StringWriter;
+import javax.xml.XMLConstants;
+import javax.xml.bind.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.stream.StreamSource;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -123,7 +131,7 @@ public class SomeApplicationTest {
         marshaller.setProperty("eclipselink.media-type", "application/json");
         StringWriter stringWriter = new StringWriter();
         Map<String, String> parsers = fillParsers();
-        Document document = new Document("Word","doc", parsers);
+        Document document = new Document("Word", "doc", parsers);
         //when
         marshaller.marshal(document, stringWriter);
         System.out.println(stringWriter.toString());
@@ -135,16 +143,74 @@ public class SomeApplicationTest {
         jaxbContext = initiateJaxContextBasedOnClass(Document.class);
         JAXBUtils.showJaxbImplementation(jaxbContext);
         Unmarshaller unmarshaller = getXmlUnMarshaller(jaxbContext, false);
-        unmarshaller.setProperty("eclipselink.media-type", "application/json");
+/*        unmarshaller.setProperty("eclipselink.media-type", "application/json");*/
         //when
         Document document = (Document) unmarshaller.unmarshal(new File(getClass().getClassLoader()
-                .getResource("documents/document_rq.json").getFile()));
+                .getResource("documents/document_rq.xml").getFile()));
         //then
         assertThat(document).isInstanceOf(Document.class);
         assertThat(document.getParsers())
                 .contains(entry("json", "JsonWordParser"),
                         entry("xml", "XmlWordParser")
                 );
+    }
+
+    @Test
+    public void unmarshall_by_default_sax_jaxb() throws JAXBException {
+        jaxbContext = initiateJaxContextBasedOnClass(Document.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
+        Unmarshaller unmarshaller = getXmlUnMarshaller(jaxbContext, false);
+        Document document = (Document) unmarshaller.unmarshal(new File(getClass().getClassLoader()
+                .getResource("documents/document_rq.xml").getFile()));
+    }
+
+    @Test
+    public void unmarshall_by_different_SAX_parser() throws JAXBException, XMLStreamException, SAXException, ParserConfigurationException, FileNotFoundException {
+        //jaxb context
+        jaxbContext = initiateJaxContextBasedOnClass(Document.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
+        Unmarshaller unmarshaller = getXmlUnMarshaller(jaxbContext, false);
+        //staxParser
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        spf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+        spf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+        spf.setFeature("http://xml.org/sax/features/validation", false);
+        XMLReader xmlReader = spf.newSAXParser().getXMLReader();
+        InputSource inputSource = new InputSource(new FileReader(getClass().getClassLoader()
+                .getResource("documents/document_rq.xml").getFile()));
+        SAXSource source = new SAXSource(xmlReader, inputSource);
+
+        unmarshaller.unmarshal(source);
+    }
+
+    @Test
+    public void unmarshall_by_StAX() throws JAXBException, XMLStreamException {
+        //jaxb context
+        jaxbContext = initiateJaxContextBasedOnClass(Document.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
+        Unmarshaller unmarshaller = getXmlUnMarshaller(jaxbContext, false);
+        //staxParser
+        XMLInputFactory xif = XMLInputFactory.newFactory();
+        StreamSource xml = new StreamSource(new File(getClass().getClassLoader()
+                .getResource("documents/document_rq.xml").getFile()));
+        XMLStreamReader xsr = xif.createXMLStreamReader(xml);
+        while (xsr.hasNext()) {
+            unmarshaller.unmarshal(xsr, Document.class);
+        }
+    }
+
+    @Test
+    public void unmarshall_from_DOM_jaxb() throws JAXBException, ParserConfigurationException, IOException, SAXException {
+        jaxbContext = initiateJaxContextBasedOnClass(Document.class);
+        JAXBUtils.showJaxbImplementation(jaxbContext);
+        Unmarshaller unmarshaller = getXmlUnMarshaller(jaxbContext, false);
+        //DOM parser
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        dbf.setNamespaceAware(true);
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        org.w3c.dom.Document document = db.parse(new File(getClass().getClassLoader()
+                .getResource("documents/document_rq.xml").getFile()));
+        Document document2 = (Document) unmarshaller.unmarshal(document);
     }
 
     private Map<String, String> fillTextures() {
